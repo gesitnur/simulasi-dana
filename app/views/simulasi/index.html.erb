@@ -1,4 +1,8 @@
-<div class='col-md-6 offset-md-3'>
+<div class='col-md-6 offset-md-3' style="  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;">
+    <br>
+    <h2 style="text-align: center;">Form Input Data</h2>
     <br>
     <%= form_for :person, :url => {:controller => "simulasi", :action => "create"}, local: true, data: { turbo: false } do |f| %>
         <div class='form-group row'>
@@ -52,11 +56,12 @@
         
         
 </div>
-<div class="row" style="margin: 50px">
-
+<div class="row" style="justify-content: center;">
+    <% a = 1 %>
     <% @tabungan.each do |t| %>
-        <div class="card border-dark mb-3 col-md-4" style="max-width: 18rem;">
-            <div class="card-header"><%= Time.now.strftime("%B %Y") %></div>
+        <% a -= 1 %>
+        <div class="card border-dark mb-3 col-md-4" style="max-width: 18rem; margin: 10px">
+            <div class="card-header"><%= Date.today.months_ago(a).strftime("%B %Y") %></div>
             <div class="card-body text-dark row">
                 <div class="col-md-6">
                     Saldo</br>
