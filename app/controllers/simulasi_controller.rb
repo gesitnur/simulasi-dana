@@ -30,8 +30,8 @@ class SimulasiController < ApplicationController
             no += 1
         end
 
-        @tabungan = array
-        @params = params[:person]
+        @tabungan   = array
+        @params     = params[:person]
         
         render 'index'
         
