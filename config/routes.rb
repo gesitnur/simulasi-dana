@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "simulasi#index"
+
+  resources :simulasi, only: [:create]
+
 end

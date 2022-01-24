@@ -1,0 +1,83 @@
+<div class='col-md-6 offset-md-3'>
+    <br>
+    <%= form_for :person, :url => {:controller => "simulasi", :action => "create"}, local: true, data: { turbo: false } do |f| %>
+        <div class='form-group row'>
+            <%= f.label :target_dana, class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.text_field :target, value: @params ? @params[:target] : '', class: 'form-control' %>
+            </div>
+        </div>
+        </br>
+        <div class='form-group row'>
+            <%= f.label :periode, class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.select :periode, options_for_select([['3 Bulan', 3], ['6 Bulan', 6], ['12 Bulan', 12], ['2 Tahun', 24], ['5 Tahun', 60]],@params ? @params[:periode] : ''), {:include_blank => true}, class: 'form-control' %>
+            </div>
+                
+        </div>
+        </br>
+        <div class='form-group row'>
+            <%= f.label :setoran_awal, class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.text_field :setor_awal, value: @params ? @params[:setor_awal] : '', class: 'form-control' %>
+            </div>
+        </div>
+        </br>
+        <div class='form-group row'>
+            <%= f.label :setoran, class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.text_field :setor_rutin, value: @params ? @params[:setor_rutin] : '', class: 'form-control' %>
+            </div>
+        </div>
+        </br>
+        <div class='form-group row'>
+            <%= f.label :'bunga_%', class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.text_field :bunga, value:3, class: 'form-control',  disabled:true %>
+            </div>
+        </div>
+        </br>
+        <div class='form-group row'>
+            <%= f.label :tanggal_pembukaan_rekening, class: 'col-sm-4 col-form-label' %>
+            <div class="col-sm-6">
+                <%= f.text_field :date, value:Time.now.strftime("%d %B %Y") , class: 'form-control',  disabled:true %>
+            </div>
+        </div>
+        </br>
+        <div class='form-group'>
+            <%= f.submit 'Simpan', class: 'btn btn-primary form-control'%>
+        </div>
+        </br>
+        <% end %>
+        
+        
+</div>
+<div class="row" style="margin: 50px">
+
+    <% @tabungan.each do |t| %>
+        <div class="card border-dark mb-3 col-md-4" style="max-width: 18rem;">
+            <div class="card-header"><%= Time.now.strftime("%B %Y") %></div>
+            <div class="card-body text-dark row">
+                <div class="col-md-6">
+                    Saldo</br>
+                    Setoran</br>
+                    Bunga</br>
+                    Pajak Bunga</br>
+                    Biaya Admin</br>
+                    Saldo Akhir</br>
+                </div>
+                <div class="col-md-6">
+                    <%= number_with_precision(t[0], :precision => 2, :delimiter => '.') %></br>
+                    <%= number_with_precision(t[1], :precision => 2, :delimiter => '.') %></br>
+                    <%= number_with_precision(t[2], :precision => 2, :delimiter => '.') %>
+                    <%= number_with_precision(t[3], :precision => 2, :delimiter => '.') %></br>
+                    <%= t[4] %></br>
+                    <%= number_with_precision(t[5], :precision => 2, :delimiter => '.') %></br>
+                </div>
+                    
+            </div>
+        </div>
+    <% end %>
+    <br>
+
+</div>
