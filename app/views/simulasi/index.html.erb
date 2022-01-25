@@ -60,7 +60,7 @@
     <% a = 1 %>
     <% @tabungan.each do |t| %>
         <% a -= 1 %>
-        <div class="card border-dark mb-3 col-md-4" style="max-width: 18rem; margin: 10px">
+        <div class="card border-dark mb-3 col-md-4 <%= t[7] && @params[:periode].to_i > t[6] ? 'bg-success bg-opacity-25' : '' %>" style="max-width: 18rem; margin: 10px">
             <div class="card-header"><%= I18n.l(Date.today.months_ago(a)) %></div>
             <div class="card-body text-dark row">
                 <div class="col-md-6">
@@ -82,6 +82,22 @@
                     
             </div>
         </div>
+        <% if @params[:periode].to_i == t[6] && t[5] < @params[:target].to_i %>
+            <div class="col-md-12">
+                <hr>
+                <p style="text-align: center;">PERIODE ANDA TIDAK MENCAPAI TARGET, BERIKUT PERIODE TAMBAHAN YANG ANDA PERLUKAN UNTUK MENCAPAI TARGET</p>
+                <hr>
+            </div>
+        <% end%>
+        
+        <% if t[7] && @params[:periode].to_i > t[6] %>
+            <div class="col-md-12">
+                <hr>
+                <p style="text-align: center;">SELAMAT TARGET ANDA TERCAPAI SEBELUM PERIODE BERAKHIR</p>
+                <hr>
+            </div>
+        <% end%>
+
     <% end %>
     <br>
 
