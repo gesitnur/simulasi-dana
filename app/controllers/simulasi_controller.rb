@@ -16,8 +16,8 @@ class SimulasiController < ApplicationController
         array = []
 
         no = 0
-        while no < periode
-            if setor_awal < target
+        while setor_awal < target || no < periode
+            
                 setor       = no == 0 ? 0 : setoran
                 bunga       = (setor_awal + setor) * 0.25 / 100
                 pajak       = bunga * 20 / 100
@@ -26,7 +26,6 @@ class SimulasiController < ApplicationController
                 array[no]   = [setor_awal, setor, bunga, pajak, admin, total]
                 setor_awal  = total
                 
-            end
             no += 1
         end
 
