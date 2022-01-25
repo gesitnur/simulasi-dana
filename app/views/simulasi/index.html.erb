@@ -44,7 +44,7 @@
         <div class='form-group row'>
             <%= f.label :tanggal_pembukaan_rekening, class: 'col-sm-4 col-form-label' %>
             <div class="col-sm-6">
-                <%= f.text_field :date, value:Time.now.strftime("%d %B %Y") , class: 'form-control',  disabled:true %>
+                <%= f.text_field :date, value:I18n.l(Time.now.to_date) , class: 'form-control',  disabled:true %>
             </div>
         </div>
         </br>
@@ -61,7 +61,7 @@
     <% @tabungan.each do |t| %>
         <% a -= 1 %>
         <div class="card border-dark mb-3 col-md-4" style="max-width: 18rem; margin: 10px">
-            <div class="card-header"><%= Date.today.months_ago(a).strftime("%B %Y") %></div>
+            <div class="card-header"><%= I18n.l(Date.today.months_ago(a)) %></div>
             <div class="card-body text-dark row">
                 <div class="col-md-6">
                     Saldo</br>
